@@ -38,7 +38,7 @@ def logout_view(request):
     return redirect('home')
 
 def post_list(request):
-    posts = Posts.objects.all()
+    posts = Posts.objects.all().order_by('-pub_date')
     return render(request,'djangoApplication/index.html',{'posts': posts})
 
 def post_detail(request,post_id):
@@ -53,7 +53,7 @@ def post_add(request):
         form = PostForm(request.POST, request)
         if form.is_valid():
            post = form.save()
-           return redirect('home', post.id)
+           return redirect('home')
     else:
         form=PostForm()
     return render(request,'djangoApplication/add_post.html',{'form':form,'form_title':'Создание поста'})
