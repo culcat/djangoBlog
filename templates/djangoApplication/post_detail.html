@@ -1,0 +1,17 @@
+ {% include 'include/head.html' %}
+{% block content %}
+
+    <div class="container mt-5">
+    <div class="book-detail">
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.pub_date }}</p>
+        <p>{{ post.content }}</p>
+
+        {% if user.is_authenticated %}
+            <p>
+                <a href="{% url 'post_edit' post.id %}" class="btn btn-primary">Редактировать</a> 
+            </p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
